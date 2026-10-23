@@ -1,78 +1,122 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Sua Plataforma de doações.">
-    <meta name="keywords" content="doações, caridade, instituições, Maceió, plataforma, ajuda">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css">
-    <title>Conecta Maceió</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conecta Maceió</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-<header>
-    <div class="logo">
-        <h1>Conecta Maceió</h1>
-        <p>Plataforma de doações</p>
+
+  <header>
+    <h1>Conecta Maceió</h1>
+    <p>PLATAFORMA DE DOAÇÕES</p>
+    <nav>
+      <a href="#">Início</a>
+      <a href="#">Instituições</a>
+      <a href="#">Como funciona</a>
+      <a href="#" class="btn-entrar">Cadastar</a>
+    </nav>
+  </header>
+
+  <section class="filtros">
+    <h2>Instituições parceiras</h2>
+    <div class="botoes-filtros">
+      <button class="ativo">Todos</button>
+      <button>Animais</button>
+      <button>Mulheres</button>
+      <button>Idosos</button>
+      <button>Crianças</button>
     </div>
-</header>
+  </section>
 
-<h2 class="titulo">Instituições Parceiras</h2>
-    <div class="filtros">
-        <button class="ativo">Todos</button>
-        <button>Idosos</button>
-        <button>Animais</button>
-        <button>Crianças</button>
-        <button>Mulheres</button>
-    </div>
-
-    <main class="cards">
-        <section class="card">
-            <img src="imagens/idosa.jpg" alt="Lar dos Idosos Amor e Vida">
-            <h3>Lar dos Idosos Amor e Vida</h3>
-            <p>NECESSIDADES URGENTES: </p>
-            <ul>
-                <li>Alimentos</li>
-                <li>Medicamentos</li>
-                <li>Material de limpeza</li>
-            </ul>
-            <button>Entre em Contato</button>
-            <button>Doar Via Pix</button>
-
-        </section>
-        <section class="card">
-            <img src="imagens/idosos.jpg" alt="Lar Bom Samaritano">
-            <h3>Lar Bom Samaritano</h3>
-            <p>NECESSIDADES URGENTES: </p>
-            <ul>
-                <li>Alimentos</li>
-                <li>Medicamentos</li>
-                <li>Material de limpeza</li>
-            </ul>
-            <button>Entre em Contato</button>
-            <button>Doar Via Pix</button>
-
-        </section>
-        <section class="card">
-            <img src="imagens/age.jpg" alt="Casa de Abrigo para Idosos">
-            <h3>Casa de Abrigo para Idosos</h3>      
-            <p>NECESSIDADES URGENTES: </p>
-            <ul>
-                <li>Alimentos</li>
-                <li>Medicamentos</li>
-                <li>Material de limpeza</li>
-            </ul>
-            <button>Entre em Contato</button>
-            <button>Doar Via Pix</button>
-        </section>
-    </main>
+  <!-- CARDS - IGUAL DA SUA FOTO -->
+  <main class="cards-container">
     
-<footer>
-    <p>&copy; 2026 Conecta Maceió. Todos os direitos reservados.</p>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1" alt="Animais">
+      <div class="card-conteudo">
+        <h3>Abrigo de Animais Patinhas</h3>
+        <p class="subtitulo">NECESSIDADES URGENTES</p>
+        <ul>
+          <li>Ração para cães e gatos</li>
+          <li>Medicamentos veterinários</li>
+          <li>Cobertores</li>
+        </ul>
+        <button class="btn-doar">
+          <i data-lucide="message-circle" ></i> Entrar em contato
+        </button>
+        <button class="btn-doar">
+          <i data-lucide="copy" ></i> Copiar PIX
+        </button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c" alt="Crianças">
+      <div class="card-conteudo">
+        <h3>Casa da Criança</h3>
+        <p class="subtitulo">NECESSIDADES URGENTES</p>
+        <ul>
+          <li>Material escolar</li>
+          <li>Alimentos não perecíveis</li>
+          <li>Roupas infantis</li>
+        </ul>
+        <button class="btn-doar">
+          <i data-lucide="message-circle" ></i> Entrar em contato
+        </button>
+        <button class="btn-pix">
+          <i data-lucide="copy" ></i> Copiar PIX
+        </button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2" alt="Idosos">
+      <div class="card-conteudo">
+        <h3>Lar do Idoso São Vicente</h3>
+        <p class="subtitulo">NECESSIDADES URGENTES</p>
+        <ul>
+          <li>Fraldas geriátricas</li>
+          <li>Produtos de higiene</li>
+          <li>Medicamentos</li>
+        </ul>
+        <button class="btn-doar">
+          <i data-lucide="message-circle" ></i> Entrar em contato
+        </button>
+        <button class="btn-pix">
+          <i data-lucide="copy" ></i> Copiar PIX
+        </button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2" alt="Mulheres">
+      <div class="card-conteudo">
+        <h3>Casa da Mulher</h3>
+        <p class="subtitulo">NECESSIDADES URGENTES</p>
+        <ul>
+          <li>Itens de higiene pessoal</li>
+          <li>Roupas femininas</li>
+          <li>Alimentos</li>
+        </ul>
+        <button class="btn-doar">
+          <i data-lucide="message-circle" ></i> Entrar em contato
+        </button>
+        <button class="btn-pix">
+          <i data-lucide="copy" ></i> Copiar PIX
+        </button>
+      </div>
+    </div>
+
+  </main>
+  <script>
+    lucide.createIcons();
+  </script>
+
 </body>
 </html>
