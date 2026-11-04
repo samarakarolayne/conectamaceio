@@ -1,34 +1,241 @@
 * {
-  margin: 0;  
-  padding:0; 
-  box-sizing:border-box; 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body { background-color:  rgb(245, 226, 226); font-family: 'Poppins', sans-serif; }
-button { font-family: 'Poppins', sans-serif; cursor: pointer; }
+body {
+  background-color: rgb(194, 178, 145);
+  font-family: 'Poppins', sans-serif;
+  color: #0a0a0a;
+}
+
+main {
+  padding-top: 110px;
+}
+
+button {
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+}
 
 header {
-  width: 100%;
-  height: 20%;
-  display: flex;
-  background-color: #fff;
-  padding: 4%;
-  margin: 0;
-  justify-content: space-between;
   position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 4%;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  backdrop-filter: blur(20px);
 }
 
 .donate {
   width: 60px;
   height: 60px;
+  
+}
+
+header h1 {
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+header p {
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #666;
+  text-align: center;
+}
+
+header nav {
+
 }
 
 header nav ul {
   display: flex;
   gap: 24px;
+  font-size: 13px;
   list-style: none;
-  background-color: rgba(87, 87, 87, 0.1);
+  background-color: #ea2432;
   padding: 10px 15px;
   border-radius: 12px;
+}
 
+header nav a {
+  color: #f2f1f1;
+  text-decoration: none;
+}
+
+header nav a:hover {
+  color: rgb(12, 12, 12);
+}
+
+/* ---------- SEÇÃO 1 ---------- */
+.section1 {
+  text-align: center;
+  padding: 60px 20px 20px;
+}
+
+.section1 div {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.section1 h2 {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+.section1 p {
+  line-height: 1.6;
+  color: #444;
+}
+
+/* ---------- SEÇÃO 2 (CARDS) ---------- */
+.section2 {
+  width: 100%;
+  padding: 40px 5% 80px;
+}
+
+.divCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+.divCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  padding-bottom: 24px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+}
+
+.divCard img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.divCard h3 {
+  margin: 16px 16px 8px;
+  font-size: 1.1rem;
+}
+
+.divCard p {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  background-color: #ea2432;
+  color: white;
+  padding: 0 8px;
+  margin-bottom: 8px;
+}
+
+.divCard ul {
+  list-style: none;
+  margin-bottom: 13px;
+  margin: 0;
+  padding: 0 0 0 10px;
+  font-size: 14px;
+  line-height: 1.3;
+  color: #444;
+  flex-grow: 1;
+  align-self: flex-start;
+  width: 100%;
+  text-align: left;
+}
+
+.divCard button {
+  width: 80%;
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.divCard button:first-of-type {
+  background-color: #006b3e;
+  color: #fff;
+  border: none;
+}
+
+.divCard button:last-of-type {
+  background-color: transparent;
+  color: #006b3e;
+  border: 1px solid #006b3e;
+}
+
+.divCard button:hover,
+.cardApoio button:hover {
+  opacity: 0.85;
+}
+
+.section3 {
+  padding: 0 5% 80px;
+}
+
+.cardApoio {
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px;
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1px solid #0098da;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.cardApoio h2 {
+  margin-bottom: 12px;
+}
+
+.cardApoio p {
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.cardApoio button {
+  padding: 12px 100px;
+  background-color: #0098da;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ---------- RESPONSIVO ---------- */
+@media (max-width: 700px) {
+  header {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  header nav {
+    margin-left: 0;
+  }
+
+  main {
+    padding-top: 190px;
+    /* header fica mais alto no celular */
+  }
 }
