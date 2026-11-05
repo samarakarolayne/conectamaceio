@@ -53,9 +53,6 @@ header p {
   text-align: center;
 }
 
-header nav {
-
-}
 
 header nav ul {
   display: flex;
@@ -222,7 +219,6 @@ header nav a:hover {
   font-weight: 500;
 }
 
-/* ---------- RESPONSIVO ---------- */
 @media (max-width: 700px) {
   header {
     flex-wrap: wrap;
@@ -236,6 +232,5 @@ header nav a:hover {
 
   main {
     padding-top: 190px;
-    /* header fica mais alto no celular */
   }
 }
