@@ -22,7 +22,7 @@
       <ul>
         <li><a href="#inicio">Início</a></li>
         <li><a href="#sobre">Sobre Nós</a></li>
-        <li><a href="#cadastrar">Cadastrar</a></li>
+        <li><a href="#cadastrar" id="linkCadastrar">Cadastrar</a></li>
       </ul>
     </nav>
   </header>
@@ -135,6 +135,37 @@
       </div>
     </section>
   </main>
+
+  <div id="modalCadastro" class="modal" hidden>
+    <div class="modal-conteudo">
+      <button type="button" id="fecharModal" class="fechar" aria-label="Fechar">&times;</button>
+      <h2>Cadastre sua instituição</h2>
+
+      <form id="formCadastro" novalidate>
+        <label for="nome">Nome da instituição/ONG</label>
+        <input type="text" id="nome" name="nome" required minlength="3">
+
+        <label for="cnpj">CNPJ</label>
+        <input type="text" id="cnpj" name="cnpj" required inputmode="numeric" placeholder="00.000.000/0000-00">
+
+        <label for="whatsapp">WhatsApp para doações</label>
+        <input type="tel" id="whatsapp" name="whatsapp" required placeholder="(82) 90000-0000">
+
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" required minlength="8" autocomplete="new-password">
+
+        <label for="senha2">Confirmar senha</label>
+        <input type="password" id="senha2" name="senha2" required autocomplete="new-password">
+
+        <p id="erro" class="erro" role="alert"></p>
+        <button type="submit" class="btn-enviar">Cadastrar</button>
+      </form>
+    </div>
+  </div>
+<script src="script.js"></script>
 </body>
 
 </html>
