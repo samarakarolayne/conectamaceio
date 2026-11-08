@@ -4,28 +4,24 @@ const fecharModal = document.getElementById("fecharModal");
 const form = document.getElementById("formCadastro");
 const erro = document.getElementById("erro");
 
-// Abre o modal ao clicar em "Cadastrar"
+
 linkCadastrar.addEventListener("click", (e) => {
-  e.preventDefault(); // impede o link de pular a página
+  e.preventDefault(); 
   modal.hidden = false;
 });
 
-// Fecha pelo X
 fecharModal.addEventListener("click", () => {
   modal.hidden = true;
 });
 
-// Fecha clicando fora da janela
 modal.addEventListener("click", (e) => {
   if (e.target === modal) modal.hidden = true;
 });
 
-// Fecha com a tecla ESC
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") modal.hidden = true;
 });
 
-// Valida o CNPJ (dígitos verificadores)
 function cnpjValido(cnpj) {
   cnpj = cnpj.replace(/\D/g, "");
   if (cnpj.length !== 14 || /^(\d)\1+$/.test(cnpj)) return false;
@@ -46,7 +42,6 @@ function cnpjValido(cnpj) {
   return cnpj.endsWith(`${d1}${d2}`);
 }
 
-// Envio do formulário
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   erro.textContent = "";
@@ -78,7 +73,7 @@ form.addEventListener("submit", (e) => {
     return;
   }
 
-  // TODO: aqui entra o envio ao servidor (Firebase/Supabase)
+  //aqui entra o envio ao servidor(BD)
   form.reset();
   modal.hidden = true;
   alert("Cadastro enviado! Aguarde a verificação.");
