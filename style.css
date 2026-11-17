@@ -53,7 +53,6 @@ header p {
   text-align: center;
 }
 
-
 header nav ul {
   display: flex;
   gap: 24px;
@@ -289,4 +288,90 @@ header nav a:hover {
 .erro {
   color: #c0392b;
   min-height: 1.2em;
+}
+
+.sectionSobre, .sectionComoDoar, .sectionTabela, .sectionCadastradas {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  padding: 32px;
+  margin: 0 auto 32px;
+  max-width: 900px;
+}
+.sectionSobre h2, .sectionComoDoar h2, .sectionTabela h2, .sectionCadastradas h2 {
+  font-size: 1.6rem;
+  margin-bottom: 14px;
+  color: #0a0a0a;
+}
+.sectionSobre p, .sectionComoDoar li, .sectionTabela p, .sectionCadastradas p {
+  line-height: 1.7;
+  color: #444;
+  font-size: 15px;
+}
+.sectionSobre ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 16px;
+}
+.sectionSobre ul li {
+  background: #f6f6f6;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+.sectionSobre ul li a {
+  color: #0098da;
+  font-weight: 600;
+  text-decoration: none;
+}
+.sectionComoDoar ol {
+  padding-left: 20px;
+  margin-top: 12px;
+}
+.sectionComoDoar ol li {
+  margin-bottom: 12px;
+  background: #f6f6f6;
+  padding: 12px 14px;
+  border-radius: 10px;
+  list-style-position: inside;
+}
+.sectionComoDoar ol li a {
+  color: #0098da;
+  font-weight: 600;
+  text-decoration: none;
+}
+.sectionTabela table {
+  width: 100%;
+  margin-top: 16px;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.sectionTabela th, .sectionTabela td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+  font-size: 14px;
+}
+.sectionTabela th {
+  background: #006b3e;
+  color: #fff;
+}
+.sectionCadastradas ul {
+  margin-top: 12px;
+  list-style: none;
+  background: #f6f6f6;
+  padding: 16px;
+  border-radius: 10px;
+}
+#mensagemDoacao {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+}
+.modal-conteudo p {
+  line-height: 1.6;
+  color: #444;
+  font-size: 14px;
 }
