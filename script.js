@@ -5,7 +5,7 @@ const form = document.getElementById("formCadastro");
 const erro = document.getElementById("erro");
 
 linkCadastrar.addEventListener("click", (e) => {
-  e.preventDefault();
+  e.preventDefault(); 
   modal.hidden = false;
 });
 
@@ -24,6 +24,7 @@ document.addEventListener("keydown", (e) => {
 function cnpjValido(cnpj) {
   cnpj = cnpj.replace(/\D/g, "");
   if (cnpj.length !== 14 || /^(\d)\1+$/.test(cnpj)) return false;
+
   const calc = (base) => {
     let soma = 0;
     let peso = base.length - 7;
@@ -34,6 +35,7 @@ function cnpjValido(cnpj) {
     const resto = soma % 11;
     return resto < 2 ? 0 : 11 - resto;
   };
+
   const d1 = calc(cnpj.slice(0, 12));
   const d2 = calc(cnpj.slice(0, 12) + d1);
   return cnpj.endsWith(`${d1}${d2}`);
@@ -42,7 +44,9 @@ function cnpjValido(cnpj) {
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   erro.textContent = "";
+
   const dados = Object.fromEntries(new FormData(form));
+
   if (dados.nome.trim().length < 3) {
     erro.textContent = "Digite o nome da instituição.";
     return;
@@ -67,115 +71,82 @@ form.addEventListener("submit", (e) => {
     erro.textContent = "As senhas não coincidem.";
     return;
   }
+
+  //aqui entra o envio ao servidor(BD)
   form.reset();
   modal.hidden = true;
   alert("Cadastro enviado! Aguarde a verificação.");
 });
 
-const inputCnpj = document.getElementById("cnpj");
-if (inputCnpj) {
-  inputCnpj.addEventListener("input", (e) => {
-    let v = e.target.value.replace(/\D/g, "").slice(0, 14);
-    v = v.replace(/^(\d{2})(\d)/, "$1.$2")
-         .replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3")
-         .replace(/\.(\d{3})(\d)/, ".$1/$2")
-         .replace(/(\d{4})(\d)/, "$1-$2");
-    e.target.value = v;
+const modalDetalhes = document.getElementById("modalDetalhes");
+const fecharDetalhes = document.getElementById("fecharDetalhes");
+const tituloDetalhes = document.getElementById("tituloDetalhes");
+const textoDetalhes = document.getElementById("textoDetalhes");
+const pixDetalhes = document.getElementById("pixDetalhes");
+const emailOficial = "maceioconecta800@gmail.com";
+
+const dadosInstituicoes = {
+  "Lar dos Idosos Amor e Vida": "Instituição que cuida de idosos em Maceió. Precisa com urgência de fraldas geriátricas, leite em pó e produtos de higiene.",
+  "Centro de Apoio ao Autista": "Oferece apoio terapêutico para crianças autistas. Precisa de materiais terapêuticos, brinquedos sensoriais e papelaria.",
+  "Associação Mulheres em Ação": "Apoia mulheres em situação de vulnerabilidade. Precisa de cestas básicas, roupas e produtos de higiene.",
+  "Instituto Educação para Todos": "Ajuda crianças com material escolar. Precisa de cadernos, mochilas e livros infantis.",
+  "Abrigo de Animais Patinhas": "Resgata e cuida de animais abandonados. Precisa de ração, medicamentos e cobertores.",
+  "Casa da Criança Esperança": "Acolhe crianças. Precisa de fraldas infantis, leite, fórmulas e brinquedos."
+};
+
+document.querySelectorAll(".divCard").forEach((card) => {
+  const nome = card.querySelector("h3").textContent;
+  const botoes = card.querySelectorAll("button");
+  const btnSaberMais = botoes[0];
+  const btnPix = botoes[1];
+
+  btnSaberMais.addEventListener("click", () => {
+    tituloDetalhes.textContent = nome;
+    textoDetalhes.textContent = dadosInstituicoes[nome] || "Instituição parceira do Conecta Maceió.";
+    modalDetalhes.hidden = false;
   });
-}
 
-const inputWhats = document.getElementById("whatsapp");
-if (inputWhats) {
-  inputWhats.addEventListener("input", (e) => {
-    let v = e.target.value.replace(/\D/g, "").slice(0, 11);
-    v = v.replace(/^(\d{2})(\d)/, "($1) $2").replace(/(\d{5})(\d)/, "$1-$2");
-    e.target.value = v;
-  });
-}
-
-let minhasDoacoes = JSON.parse(localStorage.getItem("conecta_doacoes") || "[]");
-
-function atualizarMinhasDoacoes() {
-  const lista = document.getElementById("listaMinhasDoacoes");
-  if (!lista) return;
-  if (minhasDoacoes.length === 0) {
-    lista.innerHTML = "<li>Nenhuma doação registrada ainda. Escolha uma causa acima!</li>";
-    return;
-  }
-  lista.innerHTML = "";
-  minhasDoacoes.forEach((d) => {
-    const li = document.createElement("li");
-    li.textContent = d;
-    lista.appendChild(li);
-  });
-}
-atualizarMinhasDoacoes();
-
-const btnLimpar = document.getElementById("btnLimparDoacoes");
-if (btnLimpar) {
-  btnLimpar.addEventListener("click", () => {
-    minhasDoacoes = [];
-    localStorage.removeItem("conecta_doacoes");
-    atualizarMinhasDoacoes();
-  });
-}
-
-document.querySelectorAll(".btn-pix").forEach((btn) => {
-  btn.addEventListener("click", async () => {
-    const pix = btn.dataset.pix;
-    if (!pix) {
-      alert("PIX não cadastrado para esta instituição.");
-      return;
-    }
-    try {
-      await navigator.clipboard.writeText(pix);
-      const original = btn.textContent;
-      btn.textContent = "PIX Copiado!";
-      setTimeout(() => (btn.textContent = original), 2000);
-    } catch {
-      prompt("Copie o PIX:", pix);
-    }
+  btnPix.addEventListener("click", () => {
+    navigator.clipboard.writeText(emailOficial);
+    alert("PIX copiado: " + emailOficial + " - " + nome);
   });
 });
 
-const modalDetalhe = document.getElementById("modalDetalhe");
-const fecharDetalhe = document.getElementById("fecharDetalhe");
-let instituicaoAtual = "";
-
-if (modalDetalhe && fecharDetalhe) {
-  fecharDetalhe.addEventListener("click", () => (modalDetalhe.hidden = true));
-  modalDetalhe.addEventListener("click", (e) => {
-    if (e.target === modalDetalhe) modalDetalhe.hidden = true;
-  });
-}
-
-document.querySelectorAll(".btn-saber-mais").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    if (!modalDetalhe) return;
-    instituicaoAtual = btn.dataset.nome;
-    document.getElementById("detalheNome").textContent = btn.dataset.nome;
-    document.getElementById("detalheDesc").textContent = btn.dataset.desc;
-    const lista = document.getElementById("detalheLista");
-    lista.innerHTML = "";
-    btn.dataset.necessidades.split("|").forEach((item) => {
-      const li = document.createElement("li");
-      li.textContent = item.trim();
-      lista.appendChild(li);
-    });
-    const msg = encodeURIComponent("Olá! Vim pelo Conecta Maceió e quero ajudar a " + btn.dataset.nome + ".");
-    document.getElementById("detalheWhatsapp").href = "https://wa.me/" + btn.dataset.whatsapp + "?text=" + msg;
-    modalDetalhe.hidden = false;
-  });
+fecharDetalhes.addEventListener("click", () => {
+  modalDetalhes.hidden = true;
+});
+modalDetalhes.addEventListener("click", (e) => {
+  if (e.target === modalDetalhes) modalDetalhes.hidden = true;
 });
 
-const btnQueroDoar = document.getElementById("btnQueroDoar");
-if (btnQueroDoar) {
-  btnQueroDoar.addEventListener("click", () => {
-    const texto = instituicaoAtual + " - " + new Date().toLocaleDateString("pt-BR");
-    minhasDoacoes.push(texto);
-    localStorage.setItem("conecta_doacoes", JSON.stringify(minhasDoacoes));
-    atualizarMinhasDoacoes();
-    modalDetalhe.hidden = true;
-    alert("Obrigado! Sua doação foi registrada em Minhas Doações.");
-  });
-}
+document.getElementById("btnCopiarPixDetalhes").addEventListener("click", () => {
+  navigator.clipboard.writeText(pixDetalhes.textContent);
+  alert("PIX copiado!");
+});
+
+document.getElementById("btnWhats").addEventListener("click", () => {
+  const msg = document.getElementById("mensagemDoacao").value || "Olá! Vim pelo Conecta Maceió e quero ajudar.";
+  window.open("mailto:" + emailOficial + "?subject=Quero ajudar pelo Conecta Maceió&body=" + encodeURIComponent(msg), "_blank");
+});
+
+document.querySelector(".cardApoio button").addEventListener("click", () => {
+  navigator.clipboard.writeText(emailOficial);
+  alert("PIX do Conecta Maceió copiado: " + emailOficial);
+});
+
+const listaCadastradas = document.getElementById("listaCadastradas");
+
+const formOriginal = document.getElementById("formCadastro");
+formOriginal.addEventListener("submit", () => {
+  setTimeout(() => {
+    const nomeDigitado = document.getElementById("nome").value;
+    if (nomeDigitado) {
+      if (listaCadastradas.textContent.includes("Nenhuma")) {
+        listaCadastradas.innerHTML = "";
+      }
+      const item = document.createElement("li");
+      item.innerHTML = "<strong>" + nomeDigitado + "</strong> - Aguardando verificação";
+      listaCadastradas.appendChild(item);
+    }
+  }, 100);
+});
